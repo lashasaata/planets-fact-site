@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-function Menu({ useData }: { useData: TPlanetInfo[] }) {
+function Menu({
+  useData,
+  setChoosenPlanet,
+  setBurgerMenu,
+}: {
+  useData: TPlanetInfo[];
+  setChoosenPlanet: React.Dispatch<React.SetStateAction<string>>;
+  setBurgerMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const colors: { [key: string]: string } = {
     Mercury: "#def4fc",
     Venus: "#f7cc7f",
@@ -11,6 +19,11 @@ function Menu({ useData }: { useData: TPlanetInfo[] }) {
     Saturn: "#fccb6b",
     Uranus: "#65f0d5",
     Neptune: "#497efa",
+  };
+
+  const choosePlanet = (e) => {
+    setChoosenPlanet(e.target.innerText);
+    setBurgerMenu(false);
   };
   return (
     <Main>
@@ -23,7 +36,7 @@ function Menu({ useData }: { useData: TPlanetInfo[] }) {
               <div
                 className={`bg-[${planetColor}]  w-5 h-5 rounded-full`}
               ></div>
-              <PlanetNames>{e.name}</PlanetNames>
+              <PlanetNames onClick={choosePlanet}>{e.name}</PlanetNames>
             </div>
             <img src="./assets/icon-chevron.svg" alt="arrow" />
           </Section>
