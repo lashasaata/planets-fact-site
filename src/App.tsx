@@ -7,10 +7,10 @@ import styled from "styled-components";
 
 function App() {
   const [useData, setUseData] = useState(data);
-  const [burgerMenu, setBurgerMenu] = useState<boolean>(true);
+  const [burgerMenu, setBurgerMenu] = useState(false);
   return (
     <MainCard>
-      <Header />
+      <Header burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
       {burgerMenu ? <Menu useData={useData} /> : ""}
     </MainCard>
   );

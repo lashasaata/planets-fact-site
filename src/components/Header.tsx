@@ -1,11 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-function Header() {
+function Header({
+  burgerMenu,
+  setBurgerMenu,
+}: {
+  burgerMenu: boolean;
+  setBurgerMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const handleMenu = () => {
+    setBurgerMenu(!burgerMenu);
+  };
+
   return (
     <Heading>
       <MainText>THE PLANETS</MainText>
-      <MenuIng src="/assets/icon-hamburger.svg" alt="menu" />
+      <MenuIng
+        onClick={handleMenu}
+        src="/assets/icon-hamburger.svg"
+        alt="menu"
+      />
     </Heading>
   );
 }
