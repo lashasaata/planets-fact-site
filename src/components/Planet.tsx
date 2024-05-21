@@ -19,6 +19,9 @@ function Planet({
   };
 
   const [planetLevel, setPlanetLevel] = useState<string>("overview");
+  const changeContent = (e) => {
+    setPlanetLevel(e.target.innerText);
+  };
   return (
     <main>
       {useData
@@ -28,26 +31,34 @@ function Planet({
           return (
             <div key={index}>
               <section>
-                <div>
+                <div onClick={changeContent}>
                   <h3>overview</h3>
                 </div>
-                <div>
+                <div onClick={changeContent}>
                   <h3>structure</h3>
                 </div>
-                <div>
+                <div onClick={changeContent}>
                   <h3>geology</h3>
                 </div>
               </section>
-              <img
-                src={`${
-                  planetLevel == "overview"
-                    ? planet.images.planet
-                    : planetLevel == "structure"
-                    ? planet.images.internal
-                    : planet.images.geology
-                }`}
-                alt="planet"
-              />
+              <div>
+                {planetLevel == "overview" || planetLevel == "structure" ? (
+                  <img
+                    src={`${
+                      planetLevel == "overview"
+                        ? planet.images.planet
+                        : planetLevel == "structure"
+                        ? planet.images.internal
+                        : ""
+                    }`}
+                  />
+                ) : (
+                  <div>
+                    <img src={`${planet.images.planet}`} />
+                    <img src={`${planet.images.geology}`} />
+                  </div>
+                )}
+              </div>
               <section>
                 <h2>{planet.name}</h2>
                 <p> {planetContent}</p>
