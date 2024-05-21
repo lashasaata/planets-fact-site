@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function Menu(props) {
+function Menu({ useData }: { useData: TPlanetInfo[] }) {
   const colors: { [key: string]: string } = {
     Mercury: "#def4fc",
     Venus: "#f7cc7f",
@@ -14,7 +14,7 @@ function Menu(props) {
   };
   return (
     <Main>
-      {props.useData.map((e, index: number) => {
+      {useData.map((e: TPlanetInfo, index: number) => {
         const planetColor = colors[e.name];
         console.log(planetColor);
         return (
