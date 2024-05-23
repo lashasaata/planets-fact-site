@@ -65,7 +65,7 @@ function Menu({
                 onClick={choosePlanet}
                 className={`text-[15px] text-[#fff] font-[700] leading-[1.67] tracking-[1.36px] ${
                   textcolors[e.name]
-                } bg-inherit`}
+                } hover:cursor-pointer`}
               >
                 {e.name}
               </h2>

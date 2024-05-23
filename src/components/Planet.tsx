@@ -9,14 +9,14 @@ function Planet({
   choosenPlanet: string;
 }) {
   const colors: { [key: string]: string } = {
-    Mercury: "#def4fc",
-    Venus: "#f7cc7f",
-    Earth: "#545bfe",
-    Mars: "#ff6a45",
-    Jupiter: "#ecad7a",
-    Saturn: "#fccb6b",
-    Uranus: "#65f0d5",
-    Neptune: "#497efa",
+    Mercury: "border-[#419ebb]",
+    Venus: "border-[#eda249]",
+    Earth: "border-[#6d2ed5]",
+    Mars: "border-[#d14c32]",
+    Jupiter: "border-[#d83a34]",
+    Saturn: "border-[#cd5120]",
+    Uranus: "border-[#1ec1a2]",
+    Neptune: "border-[#2d68f0]",
   };
 
   const sizes: { [key: string]: string } = {
@@ -51,18 +51,63 @@ function Planet({
         .filter((e) => e.name === choosenPlanet)
         .map((planet, index) => {
           const planetContent = planet[planetLevel].content;
-
+          console.log(colors[choosenPlanet]);
           return (
             <div key={index} className="flex flex-col items-center">
               <PlanetLevels>
-                <div onClick={changeContent}>
-                  <h3>OVERVIEW</h3>
+                <div
+                  onClick={changeContent}
+                  className={`${
+                    planetLevel == "overview"
+                      ? `border-b-4 border-solid ${colors[choosenPlanet]} pb-4`
+                      : "border-transparent pb-5"
+                  } hover:cursor-pointer`}
+                >
+                  <h3
+                    className={`${
+                      planetLevel == "overview"
+                        ? "opacity-100"
+                        : "opacity-50 hover:opacity-100"
+                    }`}
+                  >
+                    OVERVIEW
+                  </h3>
                 </div>
-                <div onClick={changeContent}>
-                  <h3>STRUCTURE</h3>
+                <div
+                  onClick={changeContent}
+                  className={`${
+                    planetLevel == "structure"
+                      ? `border-b-4 border-solid ${colors[choosenPlanet]} pb-4`
+                      : "border-transparent pb-5"
+                  } hover:cursor-pointer`}
+                >
+                  <h3
+                    className={`${
+                      planetLevel == "structure"
+                        ? "opacity-100"
+                        : "opacity-50 hover:opacity-100"
+                    }`}
+                  >
+                    STRUCTURE
+                  </h3>
                 </div>
-                <div onClick={changeContent}>
-                  <h3>GEOLOGY</h3>
+                <div
+                  onClick={changeContent}
+                  className={`${
+                    planetLevel == "geology"
+                      ? `border-b-4 border-solid ${colors[choosenPlanet]} pb-4`
+                      : "border-transparent pb-5"
+                  }  hover:cursor-pointer`}
+                >
+                  <h3
+                    className={`${
+                      planetLevel == "geology"
+                        ? "opacity-100"
+                        : "opacity-50 hover:opacity-100"
+                    }`}
+                  >
+                    GEOLOGY
+                  </h3>
                 </div>
               </PlanetLevels>
               <div>
@@ -160,12 +205,7 @@ const PlanetLevels = styled.section`
   width: 100%;
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
 
-  & div {
-    padding-bottom: 20px;
-  }
-
   & h3 {
-    opacity: 0.5;
     font-size: 9px;
     font-weight: bold;
     font-stretch: normal;
