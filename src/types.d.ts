@@ -21,4 +21,5 @@ type TPlanetInfo = {
     internal: string;
     geology: string;
   };
+  [key: string]: any;
 };
