@@ -17,6 +17,7 @@ function App() {
       {burgerMenu ? (
         <Menu
           useData={useData}
+          choosenPlanet={choosenPlanet}
           setChoosenPlanet={setChoosenPlanet}
           setBurgerMenu={setBurgerMenu}
         />
