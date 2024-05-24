@@ -13,7 +13,13 @@ function App() {
 
   return (
     <MainCard>
-      <Header burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
+      <Header
+        burgerMenu={burgerMenu}
+        setBurgerMenu={setBurgerMenu}
+        useData={useData}
+        choosenPlanet={choosenPlanet}
+        setChoosenPlanet={setChoosenPlanet}
+      />
       {burgerMenu ? (
         <Menu
           useData={useData}
