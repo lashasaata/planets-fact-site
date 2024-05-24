@@ -18,32 +18,71 @@ function Planet({
     Uranus: "border-[#1ec1a2]",
     Neptune: "border-[#2d68f0]",
   };
+  const colorsBg: { [key: string]: string } = {
+    Mercury: "bg-[#419ebb]",
+    Venus: "bg-[#eda249]",
+    Earth: "bg-[#6d2ed5]",
+    Mars: "bg-[#d14c32]",
+    Jupiter: "bg-[#d83a34]",
+    Saturn: "bg-[#cd5120]",
+    Uranus: "bg-[#1ec1a2]",
+    Neptune: "bg-[#2d68f0]",
+  };
+  const colorsHover: { [key: string]: string } = {
+    Mercury: "hover:bg-[#419ebb]",
+    Venus: "hover:bg-[#eda249]",
+    Earth: "hover:bg-[#6d2ed5]",
+    Mars: "hover:bg-[#d14c32]",
+    Jupiter: "hover:bg-[#d83a34]",
+    Saturn: "hover:bg-[#cd5120]",
+    Uranus: "hover:bg-[#1ec1a2]",
+    Neptune: "hover:g-[#2d68f0]",
+  };
 
   const sizes: { [key: string]: string } = {
-    Mercury: "size-28 my-[95px]",
-    Venus: "w-[154px] h-[154px] my-[74px]",
-    Earth: "w-[173px] h-[173px] my-[64px]",
-    Mars: "size-32 my-[87px]",
-    Jupiter: "size-56 my-10",
-    Saturn: "w-[235px] h-[235px] my-[44px]",
-    Uranus: "size-44 my-[64px]",
-    Neptune: "size-44 my-[64px]",
+    Mercury:
+      "size-28 md:w-[184px] md:h-[184px] my-[95px] md:mt-[146px] md:mb-[130px]",
+    Venus:
+      "w-[154px] h-[154px] md:size-64 my-[74px] md:mt-[112px] md:mb-[95px]",
+    Earth: "w-[173px] h-[173px] md:size-72 my-[64px] md:mt-[96px] md:mb-20",
+    Mars: "size-32 md:size-52 my-[87px] md:mt-[132px] md:mb-[115px]",
+    Jupiter:
+      "size-56 md:w-[370px] md:h-[370px] my-10 md:mt-[54px] md:mb-[37px]",
+    Saturn:
+      "w-[235px] md:w-[420px] h-[235px] md:h-[420px] my-[44px] md:mt-[27px] md:mb-[13px]",
+    Uranus: "size-44 md:size-72 my-[64px] md:mt-[93px] md:mb-[77px]",
+    Neptune: "size-44 md:size-72 my-[64px] md:mt-[93px] md:mb-[77px]",
   };
 
   const geoSizes: { [key: string]: string } = {
-    Mercury: "w-[60px] h-[70px] bottom-[-20px]",
-    Venus: "w-[75px] h-[90px] bottom-[-30px]",
-    Earth: "w-[85px] h-[100px] bottom-[-40px]",
-    Mars: "w-[65px] h-[80px] bottom-[-30px]",
-    Jupiter: "w-[80px] h-[100px] bottom-[5px]",
-    Saturn: "w-[80px] h-[100px] bottom-[5px]",
-    Uranus: "w-[80px] h-[95px] bottom-[-30px]",
-    Neptune: "w-[80px] h-[95px] bottom-[-30px]",
+    Mercury:
+      "w-[60px] md:w-[80px] h-[70px] md:h-[95px] bottom-[-20px] md:bottom-[-30px]",
+    Venus:
+      "w-[75px] md:w-[100px] h-[90px] md:h-[120px] bottom-[-30px] md:bottom-[-40px]",
+    Earth:
+      "w-[85px] md:w-[120px] h-[100px] md:h-[140px] bottom-[-40px] md:bottom-[-50px]",
+    Mars: "w-[65px] md:w-[90px] h-[80px] md:h-[110px] bottom-[-30px]",
+    Jupiter: "w-[80px] md:w-[140px] h-[100px] md:h-[170px] bottom-[5px]",
+    Saturn:
+      "w-[80px] md:w-[100px] h-[100px] md:h-[130px] bottom-[5px] md:bottom-[15px]",
+    Uranus:
+      "w-[80px] md:w-[120px] h-[95px] md:h-[140px] bottom-[-30px] md:bottom-[-50px]",
+    Neptune:
+      "w-[80px] md:w-[120px] h-[95px] md:h-[140px] bottom-[-30px] md:bottom-[-50px]",
   };
 
   const [planetLevel, setPlanetLevel] = useState<string>("overview");
   const changeContent = (e) => {
     setPlanetLevel(e.target.innerText.toLowerCase());
+  };
+  const changeContentMd1 = (e) => {
+    setPlanetLevel("overview");
+  };
+  const changeContentMd2 = (e) => {
+    setPlanetLevel("structure");
+  };
+  const changeContentMd3 = (e) => {
+    setPlanetLevel("geology");
   };
   return (
     <main>
@@ -51,10 +90,9 @@ function Planet({
         .filter((e) => e.name === choosenPlanet)
         .map((planet, index) => {
           const planetContent = planet[planetLevel].content;
-          console.log(colors[choosenPlanet]);
           return (
             <div key={index} className="flex flex-col items-center">
-              <PlanetLevels>
+              <PlanetLevels className="flex md:hidden">
                 <div
                   onClick={changeContent}
                   className={`${
@@ -135,29 +173,82 @@ function Planet({
                   </div>
                 )}
               </div>
-              <section className="flex flex-col items-center gap-4">
-                <h2 className="text-[40px] text-[#fff] font-[500]">
-                  {planet.name.toUpperCase()}
-                </h2>
-                <p className="text-[11px] text-[#fff] font-[400] leading-[2] px-6 text-center opacity-70">
-                  {" "}
-                  {planetContent}
-                </p>
-                <div className="flex items-center gap-1 mt-4">
-                  <p className="text-xs text-[#fff] font-[500] leading-[2.08] opacity-50">
-                    Source :{" "}
-                    <a
-                      className="font-[700] underline"
-                      href={`${planet[planetLevel].source}`}
-                    >
-                      Wikipedia
-                    </a>
+              <div className="md:w-full md:flex md:items-center md:justify-between md:px-10">
+                <section className="flex flex-col items-center gap-4 md:items-start md:gap-6">
+                  <h2 className="text-[40px] md:text-[48px] text-[#fff] font-[500]">
+                    {planet.name.toUpperCase()}
+                  </h2>
+                  <p className="md:w-[340px] text-[11px] text-[#fff] font-[400] leading-[2] px-6 md:px-0 text-center md:text-start opacity-70">
+                    {" "}
+                    {planetContent}
                   </p>
-                  <img src="/assets/icon-source.svg" alt="source" />
-                </div>
-              </section>
-              <section className="flex flex-col gap-2 mt-[28px] mb-10">
-                <div className="w-[327px] flex justify-between items-center border border-solid border-border pt-[9px] pb-[13px] px-6">
+                  <div className="flex items-center gap-1 mt-4 md:mt-2">
+                    <p className="text-xs text-[#fff] font-[500] leading-[2.08] opacity-50">
+                      Source :{" "}
+                      <a
+                        className="font-[700] underline"
+                        href={`${planet[planetLevel].source}`}
+                      >
+                        Wikipedia
+                      </a>
+                    </p>
+                    <img
+                      className="mb-[-3px]"
+                      src="/assets/icon-source.svg"
+                      alt="source"
+                    />
+                  </div>
+                </section>
+                <section className="hidden md:flex md:flex-col md:gap-4">
+                  <div
+                    onClick={changeContentMd1}
+                    className={`${
+                      planetLevel == "overview"
+                        ? `${colorsBg[choosenPlanet]}`
+                        : `${colorsHover[choosenPlanet]} border border-solid border-border`
+                    } md:w-[280px] md:h-10 md:flex md:items-center md:gap-[15px] md:pl-5`}
+                  >
+                    <span className="text-[9px] text-[#fff] font-[700] leading-[2.78] tracking-[1.93px] opacity-50">
+                      01
+                    </span>
+                    <h3 className="text-[9px] text-[#fff] font-[700] leading-[2.78] tracking-[1.93px]">
+                      OVERVIEW
+                    </h3>
+                  </div>
+                  <div
+                    onClick={changeContentMd2}
+                    className={`${
+                      planetLevel == "structure"
+                        ? `${colorsBg[choosenPlanet]}`
+                        : `${colorsHover[choosenPlanet]} border border-solid border-border`
+                    } md:w-[280px] md:h-10 md:flex md:items-center md:gap-[15px] md:pl-5`}
+                  >
+                    <span className="text-[9px] text-[#fff] font-[700] leading-[2.78] tracking-[1.93px] opacity-50">
+                      02
+                    </span>
+                    <h3 className="text-[9px] text-[#fff] font-[700] leading-[2.78] tracking-[1.93px]">
+                      INTERNAL STRUCTURE
+                    </h3>
+                  </div>
+                  <div
+                    onClick={changeContentMd3}
+                    className={`${
+                      planetLevel == "geology"
+                        ? `${colorsBg[choosenPlanet]}`
+                        : `${colorsHover[choosenPlanet]} border border-solid border-border`
+                    } md:w-[280px] md:h-10 md:flex md:items-center md:gap-[15px] md:pl-5`}
+                  >
+                    <span className="text-[9px] text-[#fff] font-[700] leading-[2.78] tracking-[1.93px] opacity-50">
+                      03
+                    </span>
+                    <h3 className="text-[9px] text-[#fff] font-[700] leading-[2.78] tracking-[1.93px]">
+                      SURFACE GEOLOGY
+                    </h3>
+                  </div>
+                </section>
+              </div>
+              <section className="md:w-full flex flex-col md:flex-row md:justify-between gap-2 md:gap-[11px] mt-[28px] mb-10 md:px-10">
+                <div className="w-[327px] md:w-[164px] flex md:flex-col justify-between items-center md:items-start border border-solid border-border pt-[9px] md:pt-4 pb-[13px] md:pb-[19px] px-6 md:px-[15px]">
                   <span className="text-[8px] text-[#fff] font-[700] leading-[2] tracking-[0.72px] opacity-50">
                     ROTATION TIME
                   </span>
@@ -165,7 +256,7 @@ function Planet({
                     {planet.rotation.toUpperCase()}
                   </span>
                 </div>
-                <div className="w-[327px] flex justify-between items-center border border-solid border-border pt-[9px] pb-[13px] px-6">
+                <div className="w-[327px] md:w-[164px] flex md:flex-col justify-between items-center md:items-start border border-solid border-border pt-[9px] md:pt-4 pb-[13px] md:pb-[19px] px-6 md:px-[15px]">
                   <span className="text-[8px] text-[#fff] font-[700] leading-[2] tracking-[0.72px] opacity-50">
                     REVOLUTION TIME
                   </span>
@@ -173,7 +264,7 @@ function Planet({
                     {planet.revolution.toUpperCase()}
                   </span>
                 </div>
-                <div className="w-[327px] flex justify-between items-center border border-solid border-border pt-[9px] pb-[13px] px-6">
+                <div className="w-[327px] md:w-[164px] flex md:flex-col justify-between items-center md:items-start border border-solid border-border pt-[9px] md:pt-4 pb-[13px] md:pb-[19px] px-6 md:px-[15px]">
                   <span className="text-[8px] text-[#fff] font-[700] leading-[2] tracking-[0.72px] opacity-50">
                     radius
                   </span>
@@ -181,7 +272,7 @@ function Planet({
                     {planet.radius.toUpperCase()}
                   </span>
                 </div>
-                <div className="w-[327px] flex justify-between items-center border border-solid border-border pt-[9px] pb-[13px] px-6">
+                <div className="w-[327px] md:w-[164px] flex md:flex-col justify-between items-center md:items-start border border-solid border-border pt-[9px] md:pt-4 pb-[13px] md:pb-[19px] px-6 md:px-[15px]">
                   <span className="text-[8px] text-[#fff] font-[700] leading-[2] tracking-[0.72px] opacity-50">
                     AVERAGE TEMP.
                   </span>
@@ -198,7 +289,6 @@ function Planet({
 }
 
 const PlanetLevels = styled.section`
-  display: flex;
   justify-content: space-between;
   padding: 0px 24px;
   margin-top: 20px;
