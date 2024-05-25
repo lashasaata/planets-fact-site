@@ -28,16 +28,6 @@ function Planet({
     Uranus: "bg-[#1ec1a2]",
     Neptune: "bg-[#2d68f0]",
   };
-  const colorsHover: { [key: string]: string } = {
-    Mercury: "hover:bg-[#419ebb]",
-    Venus: "hover:bg-[#eda249]",
-    Earth: "hover:bg-[#6d2ed5]",
-    Mars: "hover:bg-[#d14c32]",
-    Jupiter: "hover:bg-[#d83a34]",
-    Saturn: "hover:bg-[#cd5120]",
-    Uranus: "hover:bg-[#1ec1a2]",
-    Neptune: "hover:g-[#2d68f0]",
-  };
 
   const sizes: { [key: string]: string } = {
     Mercury:

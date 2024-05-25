@@ -25,8 +25,19 @@ function Header({
     setChoosenPlanet(lowercase.join(""));
   };
 
+  const colors: { [key: string]: string } = {
+    Mercury: "lg:border-t-4 lg:border-solid lg:border-[#419ebb]",
+    Venus: "lg:border-t-4 lg:border-solid lg:border-[#eda249]",
+    Earth: "lg:border-t-4 lg:border-solid lg:border-[#6d2ed5]",
+    Mars: "lg:border-t-4 lg:border-solid lg:border-[#d14c32]",
+    Jupiter: "lg:border-t-4 lg:border-solid lg:border-[#d83a34]",
+    Saturn: "lg:border-t-4 lg:border-solid lg:border-[#cd5120]",
+    Uranus: "lg:border-t-4 lg:border-solid lg:border-[#1ec1a2]",
+    Neptune: "lg:border-t-4 lg:border-solid lg:border-[#2d68f0]",
+  };
+
   return (
-    <Heading className="md:flex-col lg:flex-row items-center lg:items-end md:gap-10 py-4 md:pt-[32px] lg:pt-[22px] px-6 md:px-[52px] lg:pl-8 lg:pr-[41px] md:pb-[27px]">
+    <Heading className="md:flex-col lg:flex-row items-center lg:items-end md:gap-10 py-4 md:pt-[32px] lg:pt-[0px] px-6 md:px-[52px] lg:pl-8 lg:pr-[41px] md:pb-[27px]">
       <MainText>THE PLANETS</MainText>
       <MenuIng
         onClick={handleMenu}
@@ -37,15 +48,23 @@ function Header({
       <div className="hidden md:flex gap-10">
         {useData.map((e, index: number) => {
           return (
-            <h2
+            <div
               key={index}
-              onClick={choosePlanet}
               className={`${
-                choosenPlanet == e.name ? "opacity-100" : "opacity-65"
-              } text-xs text-[#fff] font-[700] leading-[2.27] tracking-[1.5px]`}
+                choosenPlanet == e.name
+                  ? `${colors[choosenPlanet]} lg:pt-[29px]`
+                  : "lg:pt-[33px]"
+              } `}
             >
-              {e.name.toUpperCase()}
-            </h2>
+              <h2
+                onClick={choosePlanet}
+                className={`${
+                  choosenPlanet == e.name ? "opacity-100" : "opacity-65"
+                } text-xs text-[#fff] font-[700] leading-[2.27] tracking-[1.5px] hover:opacity-100 hover:cursor-pointer`}
+              >
+                {e.name.toUpperCase()}
+              </h2>
+            </div>
           );
         })}
       </div>
