@@ -26,7 +26,7 @@ function Header({
   };
 
   return (
-    <Heading className="md:flex-col md:items-center md:gap-10 py-4 md:pt-[32px] px-6 md:px-[52px] md:pb-[27px]">
+    <Heading className="md:flex-col lg:flex-row items-center lg:items-end md:gap-10 py-4 md:pt-[32px] lg:pt-[22px] px-6 md:px-[52px] lg:pl-8 lg:pr-[41px] md:pb-[27px]">
       <MainText>THE PLANETS</MainText>
       <MenuIng
         onClick={handleMenu}
@@ -41,7 +41,7 @@ function Header({
               key={index}
               onClick={choosePlanet}
               className={`${
-                choosenPlanet == e.name ? "opacity-100" : "opacity-75"
+                choosenPlanet == e.name ? "opacity-100" : "opacity-65"
               } text-xs text-[#fff] font-[700] leading-[2.27] tracking-[1.5px]`}
             >
               {e.name.toUpperCase()}
@@ -57,7 +57,6 @@ const Heading = styled.header`
   width: auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 `;
 
