@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { MouseEventHandler } from "react";
 
 function Planet({
   useData,
@@ -68,16 +69,20 @@ function Planet({
   const [planetLevel, setPlanetLevel] = useState<string>(
     localStorage.getItem("planetLevel") || "overview"
   );
-  const changeContent = (e) => {
-    setPlanetLevel(e.target.innerText.toLowerCase());
+
+  const changeContent: MouseEventHandler<HTMLDivElement> = (
+    event: MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const target = event.target as HTMLDivElement;
+    setPlanetLevel(target.innerText.toLowerCase());
   };
-  const changeContentMd1 = (e) => {
+  const changeContentMd1 = () => {
     setPlanetLevel("overview");
   };
-  const changeContentMd2 = (e) => {
+  const changeContentMd2 = () => {
     setPlanetLevel("structure");
   };
-  const changeContentMd3 = (e) => {
+  const changeContentMd3 = () => {
     setPlanetLevel("geology");
   };
 
