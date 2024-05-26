@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function Planet({
@@ -65,7 +65,9 @@ function Planet({
       "w-[80px] md:w-[120px] xl:w-[160px] h-[95px] md:h-[140px] xl:h-[200px] bottom-[-30px] md:bottom-[-50px] xl:bottom-[-66px]",
   };
 
-  const [planetLevel, setPlanetLevel] = useState<string>("overview");
+  const [planetLevel, setPlanetLevel] = useState<string>(
+    localStorage.getItem("planetLevel") || "overview"
+  );
   const changeContent = (e) => {
     setPlanetLevel(e.target.innerText.toLowerCase());
   };
@@ -78,6 +80,11 @@ function Planet({
   const changeContentMd3 = (e) => {
     setPlanetLevel("geology");
   };
+
+  useEffect(() => {
+    localStorage.setItem("planetLevel", planetLevel);
+  }, [planetLevel]);
+
   return (
     <main>
       {useData
@@ -248,7 +255,7 @@ function Planet({
                   <span className="text-[8px] lg:text-[11px] text-[#fff] font-[700] leading-[2] lg:leading-[2.27] tracking-[0.72px] lg:tracking-[1px] opacity-50">
                     ROTATION TIME
                   </span>
-                  <span className="text-[20px] lg:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
+                  <span className="text-[20px] lg:text-[30px] xl:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
                     {planet.rotation.toUpperCase()}
                   </span>
                 </div>
@@ -256,7 +263,7 @@ function Planet({
                   <span className="text-[8px] lg:text-[11px] text-[#fff] font-[700] leading-[2] lg:leading-[2.27] tracking-[0.72px] lg:tracking-[1px] opacity-50">
                     REVOLUTION TIME
                   </span>
-                  <span className="text-[20px] lg:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
+                  <span className="text-[20px] lg:text-[30px] xl:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
                     {planet.revolution.toUpperCase()}
                   </span>
                 </div>
@@ -264,7 +271,7 @@ function Planet({
                   <span className="text-[8px] lg:text-[11px] text-[#fff] font-[700] leading-[2] lg:leading-[2.27] tracking-[0.72px] lg:tracking-[1px] opacity-50">
                     radius
                   </span>
-                  <span className="text-[20px] lg:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
+                  <span className="text-[20px] lg:text-[30px] xl:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
                     {planet.radius.toUpperCase()}
                   </span>
                 </div>
@@ -272,7 +279,7 @@ function Planet({
                   <span className="text-[8px] lg:text-[11px] text-[#fff] font-[700] leading-[2] lg:leading-[2.27] tracking-[0.72px] lg:tracking-[1px] opacity-50">
                     AVERAGE TEMP.
                   </span>
-                  <span className="text-[20px] lg:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
+                  <span className="text-[20px] lg:text-[30px] xl:text-[40px] text-[#fff] font-[500] tracking-[-0.75px] lg:tracking-[-1.5px]">
                     {planet.temperature.toUpperCase()}
                   </span>
                 </div>

@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import data from "../data.json";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import styled from "styled-components";
 import Planet from "./components/Planet";
+import { useScreenType } from "../WindowWidth";
 
 function App() {
-  const [useData, setUseData] = useState(data);
-  const [burgerMenu, setBurgerMenu] = useState(false);
-  const [choosenPlanet, setChoosenPlanet] = useState<string>("Mercury");
+  const { isMobile } = useScreenType();
+  const useData = data;
+  const [burgerMenu, setBurgerMenu] = useState<boolean>(false);
+  const [choosenPlanet, setChoosenPlanet] = useState<string>(
+    JSON.parse(localStorage.getItem("choosenPlanet")) || "Mercury"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("choosenPlanet", JSON.stringify(choosenPlanet));
+  }, [choosenPlanet]);
 
   return (
     <MainCard>
@@ -20,7 +28,7 @@ function App() {
         choosenPlanet={choosenPlanet}
         setChoosenPlanet={setChoosenPlanet}
       />
-      {burgerMenu ? (
+      {burgerMenu && isMobile ? (
         <Menu
           useData={useData}
           choosenPlanet={choosenPlanet}

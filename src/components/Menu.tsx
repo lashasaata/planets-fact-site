@@ -24,7 +24,10 @@ function Menu({
   };
 
   const choosePlanet = (e) => {
-    setChoosenPlanet(e.target.innerText);
+    const lowercase = e.target.innerText.toLowerCase().split("");
+    const firstUpper = lowercase[0].toUpperCase();
+    lowercase[0] = firstUpper;
+    setChoosenPlanet(lowercase.join(""));
     setBurgerMenu(false);
   };
   return (
@@ -67,7 +70,7 @@ function Menu({
                   textcolors[e.name]
                 } hover:cursor-pointer`}
               >
-                {e.name}
+                {e.name.toUpperCase()}
               </h2>
             </div>
             <img src="./assets/icon-chevron.svg" alt="arrow" />
