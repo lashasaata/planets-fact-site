@@ -11,12 +11,19 @@ function App() {
   const { isMobile } = useScreenType();
   const useData = data;
   const [burgerMenu, setBurgerMenu] = useState<boolean>(false);
-  const [choosenPlanet, setChoosenPlanet] = useState<string>(
-    JSON.parse(localStorage.getItem("choosenPlanet")) || "Mercury"
-  );
+
+  // set and get planet from localstorage
+  const storedChoosenPlanet = localStorage.getItem("choosenPlanet");
+  const initialChoosenPlanet = storedChoosenPlanet
+    ? JSON.parse(storedChoosenPlanet)
+    : "Mercury";
+  const [choosenPlanet, setChoosenPlanet] =
+    useState<string>(initialChoosenPlanet);
 
   useEffect(() => {
-    localStorage.setItem("choosenPlanet", JSON.stringify(choosenPlanet));
+    if (choosenPlanet) {
+      localStorage.setItem("choosenPlanet", JSON.stringify(choosenPlanet));
+    }
   }, [choosenPlanet]);
 
   return (
