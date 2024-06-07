@@ -18,8 +18,11 @@ function Header({
     setBurgerMenu(!burgerMenu);
   };
 
-  const choosePlanet = (e) => {
-    const lowercase = e.target.innerText.toLowerCase().split("");
+  const choosePlanet = (
+    e: React.MouseEvent<HTMLHeadingElement, MouseEvent>
+  ) => {
+    const targetElement = e.target as HTMLElement;
+    const lowercase = targetElement.innerText.toLowerCase().split("");
     const firstUpper = lowercase[0].toUpperCase();
     lowercase[0] = firstUpper;
     setChoosenPlanet(lowercase.join(""));

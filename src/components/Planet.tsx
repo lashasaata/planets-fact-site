@@ -71,7 +71,7 @@ function Planet({
   );
 
   const changeContent: MouseEventHandler<HTMLDivElement> = (
-    event: MouseEvent<HTMLDivElement, MouseEvent>
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     const target = event.target as HTMLDivElement;
     setPlanetLevel(target.innerText.toLowerCase());
