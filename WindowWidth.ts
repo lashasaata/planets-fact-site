@@ -2,29 +2,29 @@ import { useState, useEffect } from "react";
 
 const mobileBreakpoint = 768;
 
+interface WindowSize {
+  width: number | undefined;
+  height: number | undefined;
+}
+
 const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({
+  const [windowSize, setWindowSize] = useState<WindowSize>({
     width: undefined,
     height: undefined,
   });
 
   useEffect(() => {
-    // handler to call on window resize
     const handleResize = () => {
-      // set window width/height to state
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
     };
 
-    // event listener
     window.addEventListener("resize", handleResize);
 
-    // update state with initial window size
     handleResize();
 
-    // remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -34,7 +34,7 @@ const useWindowSize = () => {
 export const useScreenType = () => {
   const { width } = useWindowSize();
 
-  const isMobile = width < mobileBreakpoint;
+  const isMobile = width && width < mobileBreakpoint; // Check if width is not undefined before comparison
 
   return { isMobile };
 };
